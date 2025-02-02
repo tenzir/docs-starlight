@@ -5,28 +5,30 @@ import starlightUtils from "@lorenzo_lewis/starlight-utils";
 
 // https://astro.build/config
 export default defineConfig({
-	integrations: [
-		starlight({
-      plugins: [starlightUtils({
-        multiSidebar: {
-          switcherStyle: 'hidden'
-        },
-        navLinks: {
-          leading: { useSidebarLabelled: 'navbar' }
-        }
-      })],
-			title: 'Tenzir',
+  integrations: [
+    starlight({
+      plugins: [
+        starlightUtils({
+          multiSidebar: {
+            switcherStyle: 'hidden'
+          },
+          navLinks: {
+            leading: { useSidebarLabelled: 'navbar' }
+          }
+        }),
+      ],
+      title: 'Tenzir',
       logo: {
         light: './src/assets/tenzir-light.svg',
         dark: './src/assets/tenzir-dark.svg',
         replacesTitle: true,
       },
-			social: {
-				github: 'https://github.com/tenzir/tenzir',
+      social: {
+        github: 'https://github.com/tenzir/tenzir',
         discord: 'https://discord.tenzir.com',
         linkedin: 'https://linkedin.com/company/tenzir',
-			},
-			sidebar: [
+      },
+      sidebar: [
         {
           label: 'Docs',
           items: [
