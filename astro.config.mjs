@@ -2,12 +2,18 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import starlightUtils from "@lorenzo_lewis/starlight-utils";
+import starlightVersions from 'starlight-versions'
 
 // https://astro.build/config
 export default defineConfig({
   integrations: [
     starlight({
       plugins: [
+        starlightVersions({
+          versions: [
+            { slug: 'v4.27' },
+          ],
+        }),
         starlightUtils({
           multiSidebar: {
             switcherStyle: 'hidden'
