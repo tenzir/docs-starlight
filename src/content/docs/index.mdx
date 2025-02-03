@@ -1,36 +1,57 @@
 ---
-title: Welcome to Tenzir
-description: Get started building your docs site with Starlight.
+title: Welcome
+description: The data pipeline engine for security teams
+tableOfContents: false
 #template: splash
-hero:
-  tagline: Congrats on setting up a new Starlight project!
-  image:
-    file: ../../assets/houston.webp
-  actions:
-    - text: Example Guide
-      link: /guides/example/
-      icon: right-arrow
-    - text: Read the Starlight docs
-      link: https://starlight.astro.build
-      icon: external
-      variant: minimal
 ---
 
+**Tenzir** is security data pipeline engine for security teams. Pipelines
+collect, shape, normalize, optimize, enrich, store, replay, and route your
+telemetry data.
+
+![End-to-end pipeline](end-to-end-pipeline.svg)
+
+**Why Tenzir?** Tenzir decouples data acquisition from downstream analytics,
+giving you full control over your data flows. By using Tenzir as your data
+pipeline, you can streamline and trim your security events down to the essence,
+significantly reducing SIEM costs.
+
+**Building a security data lake?** Tenzir serves as your ETL layer, delivering
+data as your lake requires it. Our growing [open-source library of
+packages](https://github.com/tenzir/library) includes turn-key integrations for
+popular security products and mappings to [OCSF](https://schema.ocsf.io). Don't
+use your precious security resources to do mundane data plumbing. We got this.
+
+**Join the community!** Tenzir is more than just software: it's a
+community-driven open-source project. Contribute, collaborate, and
+[join](/discord) our mission to make working with security simple and enjoyable!
+
 import { Card, CardGrid } from '@astrojs/starlight/components';
+import { LinkButton } from '@astrojs/starlight/components';
 
-## Next steps
+<CardGrid>
+  <Card title="Ready to dive in?" icon="pencil">
+    Get your fingers dirty and explore the demo node with just a few clicks and
+    a guided tour. Security data has never been easier.
 
-<CardGrid stagger>
-	<Card title="Update content" icon="pencil">
-		Edit `src/content/docs/index.mdx` to see this page change.
-	</Card>
-	<Card title="Add new content" icon="add-document">
-		Add Markdown or MDX files to `src/content/docs` to create new pages.
-	</Card>
-	<Card title="Configure your site" icon="setting">
-		Edit your `sidebar` and other config in `astro.config.mjs`.
-	</Card>
-	<Card title="Read the docs" icon="open-book">
-		Learn more in [the Starlight Docs](https://starlight.astro.build/).
-	</Card>
+    <LinkButton href="/tutorials/quickstart">Quickstart</LinkButton>
+  </Card>
+  <Card title="New to Tenzir?" icon="add-document">
+    Learn the basics of pipelines and get familiar with the Tenzir Query
+    Language (TQL). You'll master security data in no time.
+
+    <LinkButton href="/pipelines">Learn about pipelines</LinkButton>
+  </Card>
 </CardGrid>
+
+Our documentation consists of four different types of materials, each of which
+addresses a specific user need:
+
+- **How-To Guide**: Practical step-by-step explanation to help you achieve a
+  specific goal. Most useful when you're trying to get something done.
+- **Reference**: Nitty-gritty technical descriptions of how Tenzir works. Most
+  useful when you need detailed information about Tenzir's building blocks.
+- **Explanation**: Big-picture explanations of higher-level Tenzir concepts.
+  Most useful for building understanding of a particular topic.
+- **Tutorial**: Learning-oriented lesson that take you through a series of steps
+  to complete a project. Most useful when you want to get started with Tenzir.
