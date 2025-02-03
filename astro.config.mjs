@@ -65,7 +65,7 @@ export default defineConfig({
         {
           label: "navbar",
           items: [
-            { label: "Docs", link: "guides/example" },
+            { label: "Docs", link: "/" },
             { label: "Integrations", link: "integrations/amazon/security-lake" },
             { label: "API", link: "api" },
           ]
