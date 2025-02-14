@@ -1,22 +1,44 @@
 import fs from "fs";
 import path from "path";
 import { parse } from "node-html-parser";
-import { fileURLToPath } from "url"; // ✅ Fix for URL to path conversion
+import { fileURLToPath } from "url"; // Convert URL to path
+
+let originalSVGs = new Map(); // Stores full paths of `src/content/` SVGs
 
 /**
- * Modifies all built HTML files in `dist/` to inline all SVGs.
+ * Collects original `src/content/` SVG filenames **with full paths** before
+ * Astro builds them.
+ */
+function collectOriginalSVGs() {
+  const contentDir = path.join(process.cwd(), "src/content");
+  if (!fs.existsSync(contentDir)) return;
+
+  function scanDir(dir) {
+    for (const file of fs.readdirSync(dir)) {
+      const fullPath = path.join(dir, file);
+      if (fs.statSync(fullPath).isDirectory()) {
+        scanDir(fullPath);
+      } else if (file.endsWith(".svg")) {
+        originalSVGs.set(file, fullPath); // Store full path mapped by filename
+      }
+    }
+  }
+
+  scanDir(contentDir);
+  console.log(`📁 Found ${originalSVGs.size} SVGs in src/content/`);
+}
+
+/**
+ * Modifies all built HTML files in `dist/` to inline only `src/content/` SVGs.
  */
 function inlineSVGsInBuiltPages(dir) {
   const htmlFiles = findHtmlFiles(dir);
-
   for (const file of htmlFiles) {
     const filePath = path.join(dir, file);
     let html = fs.readFileSync(filePath, "utf8");
 
     const newHtml = inlineSVGsInHTML(html);
     fs.writeFileSync(filePath, newHtml, "utf8");
-
-    console.log(`✅ Processed ${file}`);
   }
 }
 
@@ -41,7 +63,8 @@ function findHtmlFiles(dir) {
 }
 
 /**
- * Parses HTML and replaces `<img src="*.svg">` with inline `<svg>`.
+ * Parses HTML and replaces `<img src="*.svg">` with inline `<svg>`, but only
+ * for `src/content/` SVGs.
  */
 function inlineSVGsInHTML(html) {
   const root = parse(html);
@@ -49,8 +72,16 @@ function inlineSVGsInHTML(html) {
   root.querySelectorAll("img").forEach((img) => {
     const src = img.getAttribute("src");
 
-    if (src && src.endsWith(".svg")) {
-      const svgContent = loadSVG(src);
+    if (src && src.includes("/_astro/") && src.endsWith(".svg")) {
+      const baseName = extractBaseFilename(src);
+
+      // ✅ Check if this `_astro/` file came from `src/content/`
+      if (!originalSVGs.has(baseName)) {
+        return;
+      }
+
+      const originalSVG = originalSVGs.get(baseName);
+      const svgContent = loadSVG(originalSVG);
       if (svgContent) {
         const svgNode = parse(svgContent).firstChild;
 
@@ -75,22 +106,29 @@ function inlineSVGsInHTML(html) {
 }
 
 /**
- * Loads the correct SVG file.
+ * Extracts the **original filename** from an Astro-hashed `_astro/` filename.
  */
-function loadSVG(src) {
-  try {
-    const projectRoot = process.cwd();
-    const svgPath = path.join(projectRoot, "dist", src); // Adjusted to dist where files are built
+function extractBaseFilename(svgPath) {
+  const base = path.basename(svgPath);
+  // Capture the original filename before Astro adds hashes
+  const match = base.match(/^(.+?)\./);
+  return match ? match[1] + ".svg" : base;
+}
 
-    if (fs.existsSync(svgPath)) {
-      console.log(`✅ Inlining SVG: ${svgPath}`);
-      return fs.readFileSync(svgPath, "utf8");
+/**
+ * Loads the correct SVG file from `src/content/`.
+ */
+function loadSVG(filePath) {
+  try {
+    if (fs.existsSync(filePath)) {
+      console.log(`✅ Inlining SVG from content: ${filePath}`);
+      return fs.readFileSync(filePath, "utf8");
     }
 
-    console.warn(`⚠️ SVG not found: ${svgPath}`);
+    console.warn(`⚠️ SVG not found in src/content/: ${filePath}`);
     return null;
   } catch (error) {
-    console.warn(`❌ Failed to load SVG: ${src}`, error);
+    console.warn(`❌ Failed to load SVG: ${filePath}`, error);
     return null;
   }
 }
@@ -99,8 +137,12 @@ export default function inlineSVGsPlugin() {
   return {
     name: "astro-inline-svg",
     hooks: {
+      "astro:config:setup": () => {
+        console.log("🔍 Collecting original SVG filenames...");
+        collectOriginalSVGs();
+      },
       "astro:build:done": async ({ dir }) => {
-        const distPath = fileURLToPath(dir); // ✅ Fix: Convert file URL to string path
+        const distPath = fileURLToPath(dir);
         console.log(`🔄 Inlining SVGs in built HTML at ${distPath}`);
         inlineSVGsInBuiltPages(distPath);
       },
