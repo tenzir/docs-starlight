@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig, passthroughImageService } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import sitemap from "@astrojs/sitemap";
 import starlightUtils from "@lorenzo_lewis/starlight-utils";
 import inlineSVGs from "./astro-inline-svgs.mjs";
 import { sidebar } from "./src/sidebar";
@@ -14,6 +15,12 @@ export default defineConfig({
   site: 'https://tenzir.github.io',
   base: 'docs-starlight',
   integrations: [
+    sitemap({
+      serialize(item) {
+        item.lastmod = new Date().toISOString();
+        return item;
+      },
+    }),
     starlight({
       plugins: [
         starlightUtils({
