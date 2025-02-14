@@ -43,6 +43,9 @@ jobs:
         uses: actions/configure-pages@v5
 
       - name: Build with Astro
+        # TODO: enable before going live.
+        #env:
+        #  RUN_LINK_CHECK: true
         run: |
           pnpm astro build \
             --site "${{ steps.pages.outputs.origin }}" \

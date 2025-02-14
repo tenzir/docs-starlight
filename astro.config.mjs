@@ -3,12 +3,15 @@ import { defineConfig, passthroughImageService } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import sitemap from "@astrojs/sitemap";
 import starlightUtils from "@lorenzo_lewis/starlight-utils";
+import starlightLinksValidator from 'starlight-links-validator'
 import inlineSVGs from "./astro-inline-svgs.mjs";
 import { sidebar } from "./src/sidebar";
 import { bundledLanguages } from 'shiki'
 
 // TODO: make this a submodule and track the latest version.
 import tqlLang from './tql.tmLanguage.json' assert { type: 'json' };
+
+const runLinkCheck = process.env.RUN_LINK_CHECK || false;
 
 // https://astro.build/config
 export default defineConfig({
@@ -24,6 +27,17 @@ export default defineConfig({
     starlight({
       pagination: false,
       plugins: [
+        ...(runLinkCheck
+          ? [
+            starlightLinksValidator({
+              //errorOnInvalidHashes: false,
+              //errorOnLocalLinks: false,
+              exclude: [
+                "/api/",
+              ],
+            }),
+          ]
+          : []),
         starlightUtils({
           multiSidebar: {
             switcherStyle: 'hidden'
