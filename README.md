@@ -2,6 +2,13 @@
 
 This repository hosts the documentation of Tenzir.
 
+## 🚧 WORK IN PROGRESS 🚧  
+
+The content in this repository is not authoritative. If you look for the Tenzir
+documentation, go to [docs.tenzir.com](https://docs.tenzir.com). We are
+currently testing Starlight as documentation framework, and if successful,
+migrate over from Docusaurus.
+
 ## ✊ Usage
 
 All commands are run from the root of the project, from a terminal:
