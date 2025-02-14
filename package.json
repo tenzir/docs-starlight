@@ -14,6 +14,7 @@
     "@lorenzo_lewis/starlight-utils": "^0.2.0",
     "astro": "^5.1.5",
     "node-html-parser": "^7.0.1",
-    "sharp": "^0.32.5"
+    "sharp": "^0.32.5",
+    "shiki": "^2.3.2"
   }
 }

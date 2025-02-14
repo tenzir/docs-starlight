@@ -4,6 +4,10 @@ import starlight from '@astrojs/starlight';
 import starlightUtils from "@lorenzo_lewis/starlight-utils";
 import inlineSVGs from "./astro-inline-svgs.mjs";
 import { sidebar } from "./src/sidebar";
+import { bundledLanguages } from 'shiki'
+
+// TODO: make this a submodule and track the latest version.
+import tqlLang from './tql.tmLanguage.json' assert { type: 'json' };
 
 // https://astro.build/config
 export default defineConfig({
@@ -35,6 +39,22 @@ export default defineConfig({
     }),
     inlineSVGs(),
   ],
+  markdown: {
+    shikiConfig: {
+      themes: {
+        light: 'github-light',
+        dark: 'github-dark',
+      },
+      langs: [
+        {
+          id: 'tql',
+          scopeName: 'source.tql',
+          ...tqlLang,
+        },
+        ...Object.keys(bundledLanguages),
+      ],
+    },
+  },
   // Disable built-in image optimization.
   image: {
     service: passthroughImageService(),
