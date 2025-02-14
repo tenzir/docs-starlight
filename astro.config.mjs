@@ -22,6 +22,7 @@ export default defineConfig({
       },
     }),
     starlight({
+      pagination: false,
       plugins: [
         starlightUtils({
           multiSidebar: {
