@@ -4,6 +4,7 @@ import starlight from '@astrojs/starlight';
 import sitemap from "@astrojs/sitemap";
 import starlightUtils from "@lorenzo_lewis/starlight-utils";
 import starlightLinksValidator from 'starlight-links-validator'
+import starlightOpenAPI from 'starlight-openapi'
 import inlineSVGs from "./astro-inline-svgs.mjs";
 import { sidebar } from "./src/sidebar";
 import { bundledLanguages } from 'shiki'
@@ -47,6 +48,19 @@ export default defineConfig({
             leading: { useSidebarLabelled: 'navbar' }
           }
         }),
+        starlightOpenAPI([
+          {
+            base: 'api/node',
+            label: 'Node API',
+            schema: './src/content/apis/openapi.node.yaml',
+          },
+          // TODO
+          //{
+          //  base: 'api/platform',
+          //  label: 'Platform API',
+          //  schema: './src/content/apis/openapi.platform.yaml',
+          //},
+        ]),
       ],
       title: 'Tenzir',
       logo: {

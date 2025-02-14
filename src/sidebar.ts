@@ -1,3 +1,5 @@
+import { openAPISidebarGroups } from 'starlight-openapi'
+
 export const sidebar = [
   {
     label: 'Docs',
@@ -34,6 +36,10 @@ export const sidebar = [
       },
     ],
   },
+  {
+    label: 'API',
+    items: openAPISidebarGroups,
+  },
   // NB: this needs to come *last* in the array. Otherwise, the auto-switching
   // isn't working!
   {
@@ -41,7 +47,7 @@ export const sidebar = [
     items: [
       { label: 'Docs', link: '/' },
       { label: 'Integrations', link: 'integrations/amazon/security-lake' },
-      { label: 'API', link: 'api' },
+      { label: 'API', link: 'api/node' },
     ],
   },
 ];
