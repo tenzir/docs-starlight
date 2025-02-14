@@ -11,6 +11,8 @@ import tqlLang from './tql.tmLanguage.json' assert { type: 'json' };
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://tenzir.github.io',
+  base: 'docs-starlight',
   integrations: [
     starlight({
       plugins: [
