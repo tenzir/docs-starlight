@@ -9,6 +9,38 @@ documentation, go to [docs.tenzir.com](https://docs.tenzir.com). We are
 currently testing Starlight as documentation framework, and if successful,
 migrate over from Docusaurus.
 
+## ☑️ TODOs
+
+### Structure
+
+- [x] Split nav at the top
+- [x] Render API docs based on OpenAPI spec
+- [ ] Auto-update OpenAPI spec via CI
+- [x] Generate a sitemap at build time
+- [x] Publish to GitHub Pages
+- [x] Check for broken links
+- [ ] Enable link checking in CI
+- [ ] Display the Changelog
+- [ ] Integrate release notes as a blog
+
+### Style
+
+- [x] Hoist SVGs and apply auto-darkmode
+- [x] TQL syntax highlighting
+- [ ] Fix github-{light,dark} syntax theme selection
+- [ ] Do CSS magic to fuse subsequent TQL code blocks
+- [ ] Apply Tailwind CSS and get a facelift
+
+### Content
+
+- [x] Landing page
+- [x] FAQs
+- [ ] Integrations
+- [ ] Explanations
+- [ ] Tutorials
+- [ ] Guides
+- [ ] Reference
+
 ## ✊ Usage
 
 All commands are run from the root of the project, from a terminal:
