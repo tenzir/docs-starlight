@@ -45,6 +45,7 @@ export default defineConfig({
         linkedin: 'https://linkedin.com/company/tenzir',
       },
       sidebar,
+      lastUpdated: true,
     }),
     inlineSVGs(),
   ],
