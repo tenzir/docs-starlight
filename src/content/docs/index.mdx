@@ -1,5 +1,5 @@
 ---
-title: Welcome
+title: Tenzir Documentation
 description: The data pipeline engine for security teams
 tableOfContents: false
 #template: splash
@@ -11,22 +11,10 @@ telemetry data.
 
 ![End-to-end pipeline](end-to-end-pipeline.svg)
 
-**Why Tenzir?** Tenzir decouples data acquisition from downstream analytics,
-giving you full control over your data flows. By using Tenzir as your data
-pipeline, you can streamline and trim your security events down to the essence,
-significantly reducing SIEM costs.
+Don't use your precious security resources to do mundane data plumbing. We got
+this.
 
-**Building a security data lake?** Tenzir serves as your ETL layer, delivering
-data as your lake requires it. Our growing [open-source library of
-packages](https://github.com/tenzir/library) includes turn-key integrations for
-popular security products and mappings to [OCSF](https://schema.ocsf.io). Don't
-use your precious security resources to do mundane data plumbing. We got this.
-
-**Join the community!** Tenzir is more than just software: it's a
-community-driven open-source project. Contribute, collaborate, and
-[join](/discord) our mission to make working with security simple and enjoyable!
-
-import { Card, CardGrid } from '@astrojs/starlight/components';
+import { Card, CardGrid, Aside } from '@astrojs/starlight/components';
 import { LinkButton } from '@astrojs/starlight/components';
 
 <CardGrid>
@@ -44,8 +32,9 @@ import { LinkButton } from '@astrojs/starlight/components';
   </Card>
 </CardGrid>
 
-Our documentation consists of four different types of materials, each of which
-addresses a specific user need:
+The Tenzir documentation consists of four different types of materials:
+
+![Documentation structure](docs-structure.svg)
 
 - **How-To Guide**: Practical step-by-step explanation to help you achieve a
   specific goal. Most useful when you're trying to get something done.
@@ -55,3 +44,9 @@ addresses a specific user need:
   Most useful for building understanding of a particular topic.
 - **Tutorial**: Learning-oriented lesson that take you through a series of steps
   to complete a project. Most useful when you want to get started with Tenzir.
+
+:::tip
+**Join the community!** Tenzir is more than just software: it's a
+community-driven open-source project. Contribute, collaborate, and
+[join](/discord) our mission to make working with security simple and enjoyable!
+:::

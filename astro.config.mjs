@@ -35,19 +35,31 @@ export default defineConfig({
             {
               label: 'Guides',
               items: [
-                { label: 'Example Guide', slug: 'guides/example' },
+                { label: 'Quickstart', slug: 'guides/quickstart' },
               ],
             },
             {
-              label: 'Reference',
-              autogenerate: { directory: 'reference' },
+              label: 'Tutorials',
+              items: [
+                { label: 'Map Data to OCSF', slug: 'tutorials/map-data-to-ocsf' },
+              ],
             },
             {
               label: 'Explanations',
               autogenerate: { directory: 'explanations' },
-              //items: [
-              //	'pipelines',
-              //],
+            },
+            {
+              label: 'Reference',
+              items: [
+                {
+                  label: 'Language',
+                  items: [
+                    { label: 'Statements', slug: 'reference/language/statements' },
+                    { label: 'Expressions', slug: 'reference/language/expressions' },
+                    { label: 'Types', slug: 'reference/language/types' },
+                  ]
+                },
+              ]
             },
           ]
         },
