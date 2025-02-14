@@ -15,6 +15,7 @@ const runLinkCheck = process.env.RUN_LINK_CHECK || false;
 
 // https://astro.build/config
 export default defineConfig({
+  // TODO: set to https://docs.tenzir.com and remove `base`.
   site: 'https://tenzir.github.io',
   base: 'docs-starlight',
   integrations: [
