@@ -18,7 +18,7 @@ const runLinkCheck = process.env.RUN_LINK_CHECK || false;
 export default defineConfig({
   // TODO: set to https://docs.tenzir.com and remove `base`.
   site: 'https://tenzir.github.io',
-  base: 'docs-starlight',
+  base: 'docs',
   integrations: [
     sitemap({
       serialize(item) {
