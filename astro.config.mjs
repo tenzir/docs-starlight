@@ -1,7 +1,8 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig, passthroughImageService } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import starlightUtils from "@lorenzo_lewis/starlight-utils";
+import inlineSVGs from "./astro-inline-svgs.mjs";
 
 // https://astro.build/config
 export default defineConfig({
@@ -23,6 +24,7 @@ export default defineConfig({
         dark: './src/assets/tenzir-dark.svg',
         replacesTitle: true,
       },
+      customCss: ['./src/assets/styles.css'],
       social: {
         github: 'https://github.com/tenzir/tenzir',
         discord: 'https://discord.tenzir.com',
@@ -84,5 +86,10 @@ export default defineConfig({
         },
       ],
     }),
+    inlineSVGs(),
   ],
+  // Disable built-in image optimization.
+  image: {
+    service: passthroughImageService(),
+  },
 });

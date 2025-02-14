@@ -1,0 +1,6 @@
+/* Dark mode styling for inlined SVGs */
+html[data-theme='dark'] {
+  .inline-svg {
+    filter: invert(100%) hue-rotate(180deg);
+  }
+}
