@@ -19,12 +19,7 @@ export const sidebar = [
         items: [
           {
             label: 'Language',
-            collapsed: true,
-            items: [
-              { label: 'Statements', slug: 'reference/language/statements' },
-              { label: 'Expressions', slug: 'reference/language/expressions' },
-              { label: 'Types', slug: 'reference/language/types' },
-            ],
+            autogenerate: { directory: 'reference/language' },
           },
         ],
       },
